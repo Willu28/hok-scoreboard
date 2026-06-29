@@ -1,0 +1,10 @@
+<!DOCTYPE html><html><head><meta charset="utf-8">
+<style>
+body{margin:0;background:transparent;font-family:Arial;color:#fff}
+#box{position:absolute;top:20px;left:20px;background:rgba(0,0,0,.5);padding:16px 22px;border-radius:12px;font-size:42px;font-weight:bold}
+</style></head><body>
+<div id="box">WIN - <span id="w">0</span><br>LOSE - <span id="l">0</span></div>
+<script>
+function u(){w.textContent=localStorage.w||0;l.textContent=localStorage.l||0;}
+u();window.addEventListener('storage',u);setInterval(u,500);
+</script></body></html>
