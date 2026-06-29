@@ -1,18 +1,6 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="utf-8">
-  <style>
-    body {
-      background: transparent;
-      color: white;
-      font-size: 60px;
-      font-family: Arial;
-      text-align: center;
-    }
-  </style>
-</head>
-<body>
+<body style="background:black;color:white;font-size:60px;text-align:center;">
 
 <div id="score">Loading...</div>
 
@@ -20,8 +8,10 @@
 import { listenScore } from "./firebase.js";
 
 listenScore((data) => {
-  document.getElementById("score").innerText =
-    data.teamA + " - " + data.teamB;
+  if(data){
+    document.getElementById("score").innerText =
+      "Win: " + data.Win + " | Lose: " + data.Lose;
+  }
 });
 </script>
 
