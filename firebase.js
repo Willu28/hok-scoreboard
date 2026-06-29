@@ -1,21 +1,31 @@
-// Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
+import { getDatabase, ref, onValue, set } 
+from "https://www.gstatic.com/firebasejs/10.12.5/firebase-database.js";
 
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+// Your Firebase config
 const firebaseConfig = {
   apiKey: "AIzaSyBN9tniz_PWXbufmer92Kg13pf37VWmt7c",
   authDomain: "hok-scoreboard.firebaseapp.com",
+  databaseURL: "https://hok-scoreboard-default-rtdb.asia-southeast1.firebasedatabase.app",
   projectId: "hok-scoreboard",
   storageBucket: "hok-scoreboard.firebasestorage.app",
   messagingSenderId: "842346710648",
-  appId: "1:842346710648:web:b4f4a5a1068793bcb28f8d",
-  measurementId: "G-LNW3QX3TB8"
+  appId: "1:842346710648:web:01b52760a62d0c5cb28f8d",
+  measurementId: "G-2KX56ES70G"
 };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
+const db = getDatabase(app);
+
+// LIVE LISTENER (for iPhone overlay)
+export function listenScore(callback) {
+  onValue(ref(db, "score"), (snapshot) => {
+    callback(snapshot.val());
+  });
+}
+
+// UPDATE SCORE (for Android control page)
+export function updateScore(data) {
+  set(ref(db, "score"), data);
+}
