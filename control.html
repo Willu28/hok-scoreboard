@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <style>
+    button { font-size: 40px; margin: 10px; }
+  </style>
+</head>
+<body>
+
+<h2>Score Control</h2>
+
+<button onclick="winA()">Team A +1</button>
+<button onclick="winB()">Team B +1</button>
+
+<script type="module">
+import { updateScore } from "./firebase.js";
+
+let score = { teamA: 0, teamB: 0 };
+
+window.winA = function(){
+  score.teamA++;
+  updateScore(score);
+}
+
+window.winB = function(){
+  score.teamB++;
+  updateScore(score);
+}
+</script>
+
+</body>
+</html>
