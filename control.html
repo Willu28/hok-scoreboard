@@ -1,24 +1,37 @@
 <!DOCTYPE html>
 <html>
+<head>
+  <meta charset="UTF-8">
+  <title>Score Control</title>
+</head>
+
 <body style="text-align:center;font-size:30px;">
 
 <h2>Score Control</h2>
 
 <button onclick="win()">+ Win</button>
 <button onclick="lose()">+ Lose</button>
+<br><br>
 <button onclick="resetScore()">Reset Score</button>
+
 <script type="module">
 import { updateScore } from "./firebase.js";
 
 let score = { Win: 0, Lose: 0 };
 
-window.win = function(){
+window.win = function () {
   score.Win++;
   updateScore(score);
 }
 
-window.lose = function(){
+window.lose = function () {
   score.Lose++;
+  updateScore(score);
+}
+
+window.resetScore = function () {
+  score.Win = 0;
+  score.Lose = 0;
   updateScore(score);
 }
 </script>
